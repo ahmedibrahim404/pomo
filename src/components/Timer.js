@@ -36,7 +36,9 @@ const Button = styled.button`
   padding: 1.2rem 1.7rem;
   text-transform: uppercase;
 `
-
+const ButtonContainer = styled.div`
+  display: inline-block;
+`
 const Notification = styled.h2`
   font-size: 2.6rem;
   margin-bottom: 2rem;
@@ -94,6 +96,10 @@ const Timer = ({ min = 25 }) => {
     setState({ ...state, minutes: min, seconds: 0, isRunning: false, isFinished:false })
   }
 
+  const pause = () => {
+    setState({ ...state, isRunning: false, isFinished:false })
+  }
+
   const incMinutes = () => {
     setState({...state, minutes: state.minutes+1});
   }
@@ -141,14 +147,22 @@ const Timer = ({ min = 25 }) => {
         {!state.isFinished ? (<Button disabled={state.isRunning} onClick={decSeconds}>X</Button> ) : (null)}
       </Clock>
       {state.isRunning ? (
-        <Button
-          onClick={() => {
-            reset()
-            playClick()
-          }}>
-          Reset
-        </Button>
-      ) : (
+          <ButtonContainer>
+            <Button
+              onClick={() => {
+                reset()
+                playClick()
+              }}>
+              Reset
+            </Button>
+            <Button
+              onClick={() => {
+                pause()
+              }}>
+              Pause
+            </Button>
+          </ButtonContainer>
+        ) : (
         <Button
           onClick={() => {
             if(state.isFinished) reset();
