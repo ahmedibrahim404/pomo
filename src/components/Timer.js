@@ -39,7 +39,7 @@ const Button = styled.button`
 const ButtonContainer = styled.div`
   display: inline-block;
 `
-const Notification = styled.h2`
+const NotificationText = styled.h2`
   font-size: 2.6rem;
   margin-bottom: 2rem;
 `
